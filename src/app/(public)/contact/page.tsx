@@ -3,9 +3,10 @@ import { Input } from '@/src/components/ui/input'
 import { Textarea } from '@/src/components/ui/textarea'
 import { Button } from '@/src/components/ui/button'
 import { Label } from '@/src/components/ui/label'
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/src/components/ui/select'
 import Link from 'next/link'
 import { Header } from '@/src/components/custom/global/nav/navbar'
+import { Footer } from '@/src/components/custom/global/footer/footer'
+import { sendContactForm } from '@/src/forms/contact'
 
 export default function ContactSection() {
     return (
@@ -15,7 +16,7 @@ export default function ContactSection() {
                 <div className="mx-auto max-w-4xl px-4 lg:px-0">
                     <h1 className="mb-12 text-center text-4xl font-semibold lg:text-5xl">Entre em contato agora mesmo</h1>
 
-                    <div className="grid divide-y border md:grid-cols-2 md:gap-4 md:divide-x md:divide-y-0">
+                    <div className="grid divide-y border md:grid-cols-2 md:gap-4 md:divide-x md:divide-y-0 rounded">
                         <div className="flex flex-col justify-between space-y-8 p-6 sm:p-12">
                             <div>
                                 <h2 className="mb-3 text-lg font-semibold">Jader José da Silva</h2>
@@ -51,15 +52,14 @@ export default function ContactSection() {
                         </div>
                     </div>
 
-                    <div className="h-3 border-x bg-[repeating-linear-gradient(-45deg,var(--color-border),var(--color-border)_1px,transparent_1px,transparent_6px)]"></div>
 
 
                 </div>
                 <form
-                    action=""
+                    action={sendContactForm}
                     className=" px-4 py-12 lg:px-0 lg:py-24">
                     <Card className="mx-auto max-w-lg p-8 sm:p-16">
-                        <h3 className="text-xl font-semibold">Vamos te levar o lugar certo</h3>
+                        <h3 className="text-xl font-semibold">Vamos te levar ao lugar certo</h3>
                         <p className="mt-4 text-sm">Entre em contato com a nossa equipe! Estamos ansiosos para te ajudar</p>
 
                         <div className="**:[&>label]:block mt-12 space-y-6 *:space-y-3">
@@ -113,6 +113,7 @@ export default function ContactSection() {
                     </Card>
                 </form>
             </section>
+            <Footer />
         </>
     )
 }
