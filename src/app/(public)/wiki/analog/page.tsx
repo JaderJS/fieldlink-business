@@ -2,7 +2,6 @@
 
 import { BannerComponent, BannerContent, BannerProvider } from "@/src/components/custom/global/parallax.banner/parallax.banner";
 import { TextEffect } from "@/src/components/motion.primitives/text.effect";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/src/components/ui/card";
 import { TYPOGRAPHY } from "@/src/constants/typography"
 import { StaticImageData } from "next/image";
 import { motion } from 'framer-motion'
@@ -13,13 +12,13 @@ import { Item, ItemContent, ItemDescription, ItemMedia, ItemTitle } from "@/src/
 import { Blocks } from "lucide-react";
 import { CallToAction } from "@/src/components/custom/global/cta/cta";
 import { Footer } from "@/src/components/custom/global/footer/footer";
+import { Banner, Section } from "@/src/components/custom/global/landscape";
+import Link from "next/link";
 
 export default function PageWikiAnalog() {
 
 
-    const { intro, features, useCases } = TYPOGRAPHY.analog
-
-    const classNameSection = `md:px-16 lg:px-44 p-12 lg:p-32`
+    const { intro, features, useCases, faq } = TYPOGRAPHY.wiki.analog
 
     return (
         <>
@@ -31,6 +30,7 @@ export default function PageWikiAnalog() {
                 title={intro.title}
                 text={intro.overview}
                 icon={intro.icon}
+                className="mb-12"
             />
 
             {/* Features */}
@@ -38,7 +38,6 @@ export default function PageWikiAnalog() {
                 title={features.banner.title}
                 description={features.banner.subtitle}
                 src={features.banner.src}
-                className="mt-12"
             />
 
             <motion.section
@@ -47,7 +46,7 @@ export default function PageWikiAnalog() {
                 transition={{ duration: 0.6 }}
                 className="px-6 md:px-12 mt-20 pb-12"
             >
-                <SubHeader icon={Blocks} title={"Features"} />
+                <SubHeader icon={Blocks} title={"Funcionalidades"} />
                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
                     {features.itens.map(({ icon: Icon, text, description }, index) => (
                         <Item key={index} variant={'outline'} className='hover:scale-103 transition-all'>
@@ -68,8 +67,8 @@ export default function PageWikiAnalog() {
                 title={useCases.banner.title}
                 description={useCases.banner.subtitle}
                 src={useCases.banner.src}
-                className="mt-12"
             />
+
 
             <motion.section
                 initial={{ opacity: 0, y: 40 }}
@@ -96,70 +95,26 @@ export default function PageWikiAnalog() {
             {/* Call to action */}
             <CallToAction />
 
+            <section className="md:px-16 lg:px-64 m-12">
+                <h3 className="text-2xl font-semibold leading-none tracking-tight py-6">Perguntas frequentes</h3>
+                <div className="space-y-3">
+                    {faq.map((f, i) => (
+                        <details key={i} className="p-4 border rounded-md">
+                            <summary className="font-medium cursor-pointer">{f.question}</summary>
+                            <div className="mt-2 text-sm text-muted-foreground">{f.answer}</div>
+                        </details>
+                    ))}
+                </div>
+                <p className="mt-3">Não encontrou a sua pergunta? <Link href={`/faq`} className="text-primary hover:underline" >Veja algumas outras dúvidas que podem ser a sua.</Link></p>
+            </section>
+
             {/* Footer */}
             <Footer />
         </>
     )
 }
 
-function Banner({ title, description, src, className }: { title: string, description?: string, src: StaticImageData | string, className?: string }) {
-    return (
-        <BannerComponent src={src} className={className}>
-            <BannerContent className={cn("relative flex items-center justify-center py-20")}>
-                <div
-                    aria-hidden="true"
-                    className="absolute inset-0 bg-linear-to-b from-black/45 via-black/25 to-black/45 backdrop-blur-sm"
-                />
-                <div className="relative z-10 max-w-3xl px-4 text-center">
-                    <TextEffect
-                        as="h1"
-                        per="char"
-                        preset="fade"
-                        delay={typeof window !== 'undefined' &&
-                            window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 0 : 0.08}
-                        speedReveal={1.1}
-                        className="text-white/90 font-bold tracking-tight leading-tight
-                text-4xl sm:text-5xl md:text-6xl lg:text-8xl
-                drop-shadow-2xl"
-                        style={{ WebkitFontSmoothing: 'antialiased' }}
-                    >
-                        {title}
-                    </TextEffect>
 
-                    {description && <TextEffect
-                        as="p"
-                        per="line"
-                        preset="slide"
-                        delay={typeof window !== 'undefined' &&
-                            window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 0 : 0.28}
-                        className="mt-4 text-white font-semibold text-base sm:text-lg md:text-xl leading-relaxed
-                max-w-2xl mx-auto"
-                    >
-                        {description}
-                    </TextEffect>}
-                </div>
-            </BannerContent>
-        </BannerComponent>
-    )
-}
-
-function Section({ icon: Icon, title, text, className }: { icon?: any, title: string, text: string | string[], className?: string }) {
-    return (
-        <motion.section
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className={cn("px-6 md:px-12 mt-20 max-w-5xl mx-auto text-center", className)}
-        >
-            <SubHeader icon={Icon} title={title} />
-            {Array.isArray(text) ? text.map((paragraph, index) => (
-                <p key={index} className="mt-4 leading-relaxed text-justify">{paragraph}</p>
-            )) : <>
-                <p className="mt-4 leading-relaxed">{text}</p>
-            </>}
-        </motion.section>
-    )
-}
 
 function SubHeader({ icon: Icon, title }: { icon: any, title: string }) {
     return (

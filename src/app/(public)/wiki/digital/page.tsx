@@ -11,10 +11,11 @@ import { motion } from "framer-motion"
 
 import { Banner, Section, SubHeader } from "@/src/components/custom/global/landscape/index"
 import { Item, ItemContent, ItemDescription, ItemMedia, ItemTitle } from "@/src/components/ui/item";
+import Link from "next/link";
 
 export default function Digital() {
 
-    const { intro, sectionOne, technical, useCases, deployChecklist } = TYPOGRAPHY.digital
+    const { intro, sectionOne, sectionTwo, technical, useCases, deployChecklist, faq } = TYPOGRAPHY.wiki.digital
 
     return (
         <>
@@ -44,7 +45,7 @@ export default function Digital() {
                     className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-12"
                     preset="fade"
                 >
-                    {TYPOGRAPHY.digital.sectionOne.items.map(({ icon: Icon, text, description }, index) => (
+                    {sectionOne.items.map(({ icon: Icon, text, description }, index) => (
                         <div key={index} className="rounded-md h-full">
                             <Card className="h-full hover:shadow-lg duration-200 hover:scale-103 transition-all">
                                 <CardHeader>
@@ -62,10 +63,10 @@ export default function Digital() {
 
             <section className="md:px-16 lg:px-64 m-12">
                 <div className="grid md:grid-cols-2 lg:grid-cols-2">
-                    <Image src={TYPOGRAPHY.digital.sectionTwo.src} alt="" />
+                    <Image src={sectionTwo.src} alt="" />
                     <div className="flex flex-col">
-                        <h3 className="text-4xl font-semibold leading-none tracking-tight py-6">{TYPOGRAPHY.digital.sectionTwo.text}</h3>
-                        <p className="text-justify text-muted-foreground antialiased">{TYPOGRAPHY.digital.sectionTwo.description.join(' \n')}</p>
+                        <h3 className="text-4xl font-semibold leading-none tracking-tight py-6">{sectionTwo.text}</h3>
+                        <p className="text-justify text-muted-foreground antialiased">{sectionTwo.description.join(' \n')}</p>
                     </div>
                 </div>
             </section>
@@ -137,9 +138,9 @@ export default function Digital() {
             />
 
             <section className="md:px-16 lg:px-64 m-12">
-                <h3 className="text-2xl font-semibold leading-none tracking-tight py-6">{TYPOGRAPHY.digital.deployChecklist.title}</h3>
+                <h3 className="text-2xl font-semibold leading-none tracking-tight py-6">{deployChecklist.title}</h3>
                 <ul className="list-disc pl-5 space-y-2 text-muted-foreground">
-                    {TYPOGRAPHY.digital.deployChecklist.steps.map((s, i) => (
+                    {deployChecklist.steps.map((s, i) => (
                         <li key={i}>{s.text}</li>
                     ))}
                 </ul>
@@ -152,13 +153,14 @@ export default function Digital() {
             <section className="md:px-16 lg:px-64 m-12">
                 <h3 className="text-2xl font-semibold leading-none tracking-tight py-6">Perguntas frequentes</h3>
                 <div className="space-y-3">
-                    {TYPOGRAPHY.digital.faq.map((f, i) => (
+                    {faq.map((f, i) => (
                         <details key={i} className="p-4 border rounded-md">
                             <summary className="font-medium cursor-pointer">{f.question}</summary>
                             <div className="mt-2 text-sm text-muted-foreground">{f.answer}</div>
                         </details>
                     ))}
                 </div>
+                <p className="mt-3">Não encontrou a sua pergunta? <Link href={`/faq`} className="text-primary hover:underline" >Veja algumas outras dúvidas que podem ser a sua.</Link></p>
             </section>
 
             <Footer />

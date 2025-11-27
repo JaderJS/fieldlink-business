@@ -51,7 +51,7 @@ export const CallToAction = () => {
 
                     <div className="mt-4 text-sm text-slate-300">
                         <span>Não sabe por onde começar? </span>
-                        <Link href="/contact" className="underline">
+                        <Link href="/contact" className="text-primary hover:underline">
                             Agende uma avaliação grátis
                         </Link>
                     </div>

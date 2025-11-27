@@ -27,7 +27,7 @@ type IItens = {
 const itens: IItens[] = [
     {
         name: "Serviços",
-        href: "/services",
+        href: "#",
         description: "",
         subitens: [
             {
@@ -66,7 +66,7 @@ const itens: IItens[] = [
     },
     {
         name: "Aprenda mais",
-        href: "/services",
+        href: "/wiki",
         description: ""
     },
 ]
@@ -109,13 +109,11 @@ export const Header = forwardRef<HTMLElement, HeaderProps>(({ className, logo = 
                             </PopoverTrigger>
                             <PopoverContent align="start" className="w-42 p-1">
                                 <div className="flex flex-col w-full gap-0.5">
-                                    {itens.map((item) => {
-                                        return (
-                                            <Button key={item.href} asChild className="w-full justify-start" size="sm" variant={"ghost"}>
-                                                <Link href={item.href}>{item.name}</Link>
-                                            </Button>
-                                        )
-                                    })}
+                                    {itens.map((link) => (
+                                        <Button key={link.href} asChild className="w-full justify-start" size="sm" variant={"ghost"}>
+                                            <Link href={link.href}>{link.name}</Link>
+                                        </Button>
+                                    ))}
                                 </div>
                             </PopoverContent>
                         </Popover>
@@ -124,7 +122,7 @@ export const Header = forwardRef<HTMLElement, HeaderProps>(({ className, logo = 
                     {/* Main nav */}
                     <div className="flex justify-between items-center gap-6">
                         <Button
-                            // onClick={(e) => e.preventDefault()}
+                            onClick={(e) => e.preventDefault()}
                             variant={"ghost"}
                             className="flex items-center cursor-pointer hover:bg-transparent"
                             asChild

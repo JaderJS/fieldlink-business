@@ -66,16 +66,16 @@ export default function HeroSection() {
                                     preset="fade-in-blur"
                                     className="mt-4 max-w-2xl text-balance text-4xl font-semibold md:text-5xl lg:mt-16 xl:text-6xl"
                                 >
-                                    Rádios VHF / UHF pra quem não pode depender só de celular
+                                    Rádios pra quem não pode depender só de celular
                                 </TextEffect>
 
                                 <TextEffect
                                     as="p"
-                                    speedSegment={0.2}
+                                    speedSegment={0.4}
                                     preset="fade-in-blur"
                                     className="mt-6 max-w-2xl text-pretty text-base md:text-lg text-muted-foreground"
                                 >
-                                    Cobertura confiável em propriedades rurais, operações industriais e eventos — a tecnologia
+                                    Cobertura confiável em propriedades rurais, operações industriais e eventos. A tecnologia
                                     de rádio ainda é a escolha prática quando o resto da rede falha ou não chega.
                                 </TextEffect>
 
@@ -125,7 +125,7 @@ export default function HeroSection() {
                                     </DropdownMenu>
 
                                     <Button asChild size="lg" variant="ghost" className="px-5 text-base">
-                                        <Link href="#link">Solicitar demonstração</Link>
+                                        <Link href="/contact/#form">Solicitar demonstração</Link>
                                     </Button>
                                 </AnimatedGroup>
                             </div>
@@ -150,12 +150,12 @@ export default function HeroSection() {
                                 >
                                     {typography.brands.map(({ src, title }, index) => (
                                         <div key={index} className='flex'>
-                                            <img
-                                                className="mx-auto h-5 w-fit dark:invert"
+                                            <Image
+                                                className="mx-auto h-5 w-fit"
                                                 src={typeof src === 'string' ? src : src.src}
                                                 alt={title}
-                                                height="20"
-                                                width="auto"
+                                                height={100}
+                                                width={100}
                                             />
                                         </div>
                                     ))}

@@ -56,6 +56,7 @@ export default function ContactSection() {
 
                 </div>
                 <form
+                    id='form'
                     action={sendContactForm}
                     className=" px-4 py-12 lg:px-0 lg:py-24">
                     <Card className="mx-auto max-w-lg p-8 sm:p-16">

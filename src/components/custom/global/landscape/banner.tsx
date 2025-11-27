@@ -8,7 +8,7 @@ export const Banner = ({ title, description, src }: { title: string, description
             <BannerContent className="relative flex items-center justify-center py-20">
                 <div
                     aria-hidden="true"
-                    className="absolute inset-0 bg-linear-to-b from-black/45 via-black/25 to-black/45 backdrop-blur-sm"
+                    className="absolute inset-0 bg-linear-to-b from-black/35 via-black/25 to-black/35 backdrop-blur-[0.24rem]"
                 />
                 <div className="relative z-10 max-w-3xl px-4 text-center">
                     <TextEffect

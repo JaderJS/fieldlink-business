@@ -11,18 +11,25 @@ import { StaticImageData } from 'next/image'
 import { Item, ItemContent, ItemDescription, ItemGroup, ItemMedia, ItemTitle } from '@/src/components/ui/item'
 import { CallToAction } from '@/src/components/custom/global/cta/cta'
 import { Footer } from '@/src/components/custom/global/footer/footer'
+import { Banner } from '@/src/components/custom/global/landscape'
 
 export default function PageAbout() {
 
-    const typography = TYPOGRAPHY.about
+    const { intro, mission, capabilities, history, laboratory, values, vision } = TYPOGRAPHY.about
 
     return (
         <>
             <Header />
             <div className="flex flex-col w-full">
 
+                <Banner
+                    title={intro.banner.title}
+                    description={intro.banner.description}
+                    src={intro.banner.image}
+                />
+
                 {/* 🔸 Intro */}
-                <BannerComponent src={typography.intro.banner.image}>
+                {/* <BannerComponent src={intro.banner.image}>
                     <BannerContent className="relative flex items-center justify-center py-20">
                         <div
                             aria-hidden="true"
@@ -41,41 +48,39 @@ export default function PageAbout() {
                 drop-shadow-2xl"
                                 style={{ WebkitFontSmoothing: 'antialiased' }}
                             >
-                                {typography.intro.banner.title}
+                                {intro.banner.title}
                             </TextEffect>
 
                             <TextEffect
                                 as="p"
                                 per="line"
                                 preset="slide"
-                                delay={typeof window !== 'undefined' &&
-                                    window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 0 : 0.28}
-                                className="mt-4 text-white font-semibold text-base sm:text-lg md:text-xl leading-relaxed
-                max-w-2xl mx-auto"
+                                delay={typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 0 : 0.28}
+                                className="mt-4 text-white  font-semibold text-base sm:text-lg md:text-xl leading-relaxed max-w-2xl mx-auto"
                             >
-                                {typography.intro.banner.description}
+                                {intro.banner.description}
                             </TextEffect>
                         </div>
                     </BannerContent>
-                </BannerComponent>
+                </BannerComponent> */}
 
                 <Section
-                    icon={typography.intro.icon}
-                    title={typography.intro.title}
-                    text={typography.intro.text}
+                    icon={intro.icon}
+                    title={intro.title}
+                    text={intro.text}
                 />
 
                 {/* 🔸 Missão / Visão */}
                 <div className="grid md:grid-cols-2 gap-6 px-6 md:px-12 mt-10">
                     <Section
-                        icon={typography.mission.icon}
-                        title={typography.mission.text}
-                        text={typography.mission.description}
+                        icon={mission.icon}
+                        title={mission.text}
+                        text={mission.description}
                     />
                     <Section
-                        icon={typography.vision.icon}
-                        title={typography.vision.text}
-                        text={typography.vision.description}
+                        icon={vision.icon}
+                        title={vision.text}
+                        text={vision.description}
                     />
                 </div>
 
@@ -86,9 +91,9 @@ export default function PageAbout() {
                     transition={{ duration: 0.6 }}
                     className="px-6 md:px-12 mt-20 pb-12"
                 >
-                    <Header_ icon={typography.values.icon} title={typography.values.text} />
+                    <Header_ icon={values.icon} title={values.text} />
                     <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
-                        {typography.values.topics.map(({ icon: Icon, title, description }, index) => (
+                        {values.topics.map(({ icon: Icon, title, description }, index) => (
                             <Item key={index} variant={'outline'} className='hover:scale-103 transition-all'>
                                 <ItemMedia>
                                     <Icon className='size-8 text-secondary' />
@@ -103,7 +108,7 @@ export default function PageAbout() {
                 </motion.section>
 
                 {/* 🔸 História */}
-                <Banner title={typography.history.banner.title} src={typography.history.banner.image} />
+                <Banner title={history.banner.title} src={history.banner.image} />
                 <motion.section
                     initial={{ opacity: 0 }}
                     whileInView={{ opacity: 1 }}
@@ -112,7 +117,7 @@ export default function PageAbout() {
                 >
                     <Header_ icon={History} title="De volta no tempo" />
                     <Timeline   >
-                        {typography.history.timeline.map(({ year, text, icon: Icon }, index) => (
+                        {history.timeline.map(({ year, text, icon: Icon }, index) => (
                             <TimelineItem
                                 key={year}
                                 icon={<Icon />}
@@ -126,7 +131,7 @@ export default function PageAbout() {
                 </motion.section>
 
                 {/* 🔸 Laboratório */}
-                <Banner title={typography.laboratory.banner.title} src={typography.laboratory.banner.image} />
+                <Banner title={laboratory.banner.title} src={laboratory.banner.image} />
                 <Section
                     icon={Wrench}
                     title="Laboratório e equipe preparada"
@@ -140,10 +145,10 @@ export default function PageAbout() {
                     transition={{ duration: 0.6 }}
                     className="px-6 md:px-12 mt-20 mb-24"
                 >
-                    <Header_ icon={Cog} title={typography.capabilities.title} />
+                    <Header_ icon={Cog} title={capabilities.title} />
                     <div className='flex w-full mt-8'>
                         <ItemGroup className='grid md:grid-cols-3 gap-4'>
-                            {typography.capabilities.items.map(({ title, text, icon: Icon }, i) => (
+                            {capabilities.items.map(({ title, text, icon: Icon }, i) => (
                                 <Item key={i} variant={'outline'} className='hover:scale-103 transition-all'>
                                     <ItemMedia>
                                         <Icon className='size-8 text-secondary' />
@@ -190,46 +195,5 @@ function Header_({ icon: Icon, title }: { icon: any; title: string }) {
                 {title}
             </h2>
         </div>
-    )
-}
-
-function Banner({ title, description, src }: { title: string, description?: string, src: StaticImageData }) {
-    return (
-        <BannerComponent src={src}>
-            <BannerContent className="relative flex items-center justify-center py-20">
-                <div
-                    aria-hidden="true"
-                    className="absolute inset-0 bg-linear-to-b from-black/45 via-black/25 to-black/45 backdrop-blur-sm"
-                />
-                <div className="relative z-10 max-w-3xl px-4 text-center">
-                    <TextEffect
-                        as="h1"
-                        per="char"
-                        preset="fade"
-                        delay={typeof window !== 'undefined' &&
-                            window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 0 : 0.08}
-                        speedReveal={1.1}
-                        className="text-white/90 font-bold tracking-tight leading-tight
-                text-4xl sm:text-5xl md:text-6xl lg:text-8xl
-                drop-shadow-2xl"
-                        style={{ WebkitFontSmoothing: 'antialiased' }}
-                    >
-                        {title}
-                    </TextEffect>
-
-                    {description && <TextEffect
-                        as="p"
-                        per="line"
-                        preset="slide"
-                        delay={typeof window !== 'undefined' &&
-                            window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 0 : 0.28}
-                        className="mt-4 text-white font-semibold text-base sm:text-lg md:text-xl leading-relaxed
-                max-w-2xl mx-auto"
-                    >
-                        {description}
-                    </TextEffect>}
-                </div>
-            </BannerContent>
-        </BannerComponent>
     )
 }

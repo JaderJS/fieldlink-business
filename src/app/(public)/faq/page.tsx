@@ -14,7 +14,7 @@ type FAQItem = {
 
 export default function PageFAQsThree() {
 
-    const typography = TYPOGRAPHY.faq
+    const { title, asks, icon } = TYPOGRAPHY.faq
 
     return (
         <>
@@ -28,7 +28,7 @@ export default function PageFAQsThree() {
                                 <p className="text-muted-foreground mt-4">
                                     Não encontrou o que procura? Entre em contato com nosso{' '}
                                     <Link
-                                        href="#"
+                                        href="/contact/#form"
                                         className="text-primary font-medium hover:underline">
                                         time
                                     </Link>
@@ -40,7 +40,7 @@ export default function PageFAQsThree() {
                                 type="single"
                                 collapsible
                                 className="w-full space-y-2">
-                                {typography.asks.map(({ answer, question, icon: Icon }, index) => (
+                                {asks.map(({ answer, question, icon: Icon }, index) => (
                                     <AccordionItem
                                         key={index}
                                         value={String(index)}
