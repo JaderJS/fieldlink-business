@@ -555,6 +555,7 @@ export const TYPOGRAPHY = {
         asks: [
             ...WIKI.coverage.faq,
             ...WIKI.digital.faq,
+            ...WIKI.analog.faq,
             {
                 icon: Radio,
                 question: 'Qual rádio devo comprar?',
